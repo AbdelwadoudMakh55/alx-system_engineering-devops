@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -Fa --format=comma && printf '\n'
+ls -Fa --format=comma 
