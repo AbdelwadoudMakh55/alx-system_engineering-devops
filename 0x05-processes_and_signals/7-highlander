@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-# To infinity and beyond, trap SIGTERM
-while :
-do
-	echo "To infinity and beyond"
-	sleep 2
-	trap "I am invincible!!!" 15
-done
