@@ -6,6 +6,6 @@ then
 	read -r -a array <<< "$pid"
 	for element in "${array[@]}"
 	do
-		kill -9 $element
+		kill -15 "$element"
 	done
 fi
