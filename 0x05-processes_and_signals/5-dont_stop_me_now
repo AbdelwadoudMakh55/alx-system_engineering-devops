@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 # Stoping a process with kill
-pid=$(pgrep 4-to_infinity_and_beyond)
-kill -SIGTERM $pid
+pid=$(pgrep bash)
+i=0
+while read -r -a process
+do
+	kill -SIGTERM "${process[i]}"
+	((i++))
+done < "$pid"
