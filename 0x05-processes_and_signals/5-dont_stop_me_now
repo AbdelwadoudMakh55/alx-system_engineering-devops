@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 # Stoping a process with kill
 pid=$(pgrep 4-to_infinity_and_beyond)
-read -r -a array <<< "$pid"
-for element in "${array[@]}"
-do
-	kill -9 $element
-done
+if [ -n "$pid" ]
+then
+	read -r -a array <<< "$pid"
+	for element in "${array[@]}"
+	do
+		kill -9 $element
+	done
+fi
