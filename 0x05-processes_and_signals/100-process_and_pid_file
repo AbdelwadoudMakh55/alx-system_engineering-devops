@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Recapitulation
+mypid=$(pgrep 100-process_and_pid_file)
+sudo touch /var/run/myscript.pid
+sudo chmod 777 /var/run/myscript.pid
+echo "$mypid" > /var/run/myscript.pid
+while :
+do
+	echo "echo To infinity and beyond"
+	trap "echo I hate the kill command" 15
+	trap "echo Y U no love me?!" 2
+	trap "sudo rm /var/run/myscript.pid; kill -9 100-process_and_pid_file" 3
+	trap "sudo rm /var/run/myscript.pid; kill -9 100-process_and_pid_file" 15
+done
