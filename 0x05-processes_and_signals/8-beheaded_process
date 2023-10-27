@@ -1,3 +1,11 @@
 #!/usr/bin/env bash
 # Killing a process that traps signals.
-pkill -9 "7-highlander"
+pid=$(pgrep -f "7-highlander")
+if [ -n "$pid" ]
+then
+	read -r -a array <<< "$pid"
+	for element in "${array[@]}"
+	do
+		kill -9 "$element"
+	done
+fi
