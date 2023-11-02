@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Printing attached IPs
+ifconfig | grep 'inet ' | cut -c 9- | cut -d ' ' -f2
