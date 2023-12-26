@@ -1,11 +1,9 @@
 # Configuring ssh client file through puppet
-file_line { 'password':
-  path	  => "~/.ssh/config",
-  line    => "PasswordAuthentication no",
-  match   => "^PasswordAuthentication yes$",
+exec { 'sed':
+  command  => "sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' ~/.ssh/config",
+  provider => 'shell',
 }
-file_line { 'private_key':
-  path    => "~/.ssh/config",
-  line    => "IdentityFile ~/.ssh/school",
-  match   => "^IdentityFile ~/.ssh/id_rsa$",
+exec { 'sed':
+  command  => "sudo sed -i 's#IdentityFile ~/.ssh/id_rsa#IdentityFile ~/.ssh/school#' ~/.ssh/config",
+  provider => 'shell',
 }
