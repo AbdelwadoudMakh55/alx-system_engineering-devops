@@ -4,6 +4,6 @@ exec { 'disable_password_authentication':
   provider => 'shell',
 }
 exec { 'set_identity_file':
-  command  => "echo 'IdentityFile ~/.ssh/school#' >> /etc/ssh/sshd_config",
+  command  => "echo 'IdentityFile ~/.ssh/school' >> /etc/ssh/sshd_config",
   provider => 'shell',
 }
