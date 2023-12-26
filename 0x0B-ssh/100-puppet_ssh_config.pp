@@ -1,11 +1,9 @@
-# 100-puppet_ssh_config.pp
-file_line { 'Turning off password auth':
-  path   => '/etc/ssh/sshd_config',
-  line   => 'PasswordAuthentication no',
-  match  => '^#?PasswordAuthentication',
+# Puppet ssh config
+exec { 'disable_password_authentication':
+  command  => "sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config",
+  provider => 'shell',
 }
-file_line { 'private key':
-  path   => '~/.ssh/config',
-  line   => 'IdentityFile ~/.ssh/school',
-  match  => '^#?IdentityFile ~/.ssh/id_rsa',
+exec { 'set_identity_file':
+  command  => "sudo sed -i 's#IdentityFile ~/.ssh/id_rsa#IdentityFile ~/.ssh/school#' /etc/ssh/sshd_config",
+  provider => 'shell',
 }
