@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # Installing nginx and configuring it + adding redirection
-sudo apt-get update
 sudo apt-get install -y nginx
-sudo service nginx start
 echo "Hello World!" | sudo tee /var/www/html/index.html
 echo "server {
     listen 80 ;
@@ -14,4 +12,4 @@ echo "server {
         return 301 /;
     }
 }" | sudo tee /etc/nginx/sites-available/default
-sudo nginx reload
+sudo service nginx restart
