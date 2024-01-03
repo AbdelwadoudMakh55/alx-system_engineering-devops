@@ -9,4 +9,4 @@ location /redirect_me {\
     return 301 https://www.google.com;\
 }\
 "
-sudo sed -i  '/location \/ {/c $redirection_config' /etc/nginx/nginx.conf
+sudo sed -i  "/location \/ {/c $redirection_config" /etc/nginx/nginx.conf
