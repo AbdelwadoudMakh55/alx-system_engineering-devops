@@ -14,4 +14,4 @@ echo "server {
         return 301 /;
     }
 }" | sudo tee /etc/nginx/sites-available/default
-sudo service nginx reload
+sudo nginx reload
