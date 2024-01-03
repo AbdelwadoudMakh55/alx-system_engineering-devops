@@ -6,7 +6,7 @@ echo "Hello World!" | sudo tee /var/www/html/index.html
 sudo service nginx reload
 redirection_config="\
 location /redirect_me {\
-    return 301 https://www.google.com;\
+    return 301;\
 }\
 "
-sudo sed -i  "/location \/ {/c $redirection_config" /etc/nginx/nginx.conf
+sudo sed -i "/server {/a $redirection_config" /etc/nginx/nginx.conf
