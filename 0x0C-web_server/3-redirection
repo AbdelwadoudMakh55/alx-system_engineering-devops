@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Installing nginx and configuring it + adding redirection
+sudo apt-get install -y nginx
+sudo service nginx start
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo service nginx reload
+redirection_config="\
+location /redirect_me {\
+    return 301 https://www.google.com;\
+}\
+"
+sudo sed -i  '/location \/ {/c $redirection_config' /etc/nginx/nginx.conf
