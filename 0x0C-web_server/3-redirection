@@ -15,3 +15,4 @@ echo "server {
         return 301 /;
     }
 }" > /etc/nginx/sites-available/default
+sudo service nginx reload
