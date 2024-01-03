@@ -12,7 +12,7 @@ echo "server {
     server_name 52.91.182.154;
     error_page 404 /custom_404.html;
     location = /custom_404.html {
-	root /var/wwx/html;
+	root /var/www/html;
 	internal;
     }
     location /redirect_me {
