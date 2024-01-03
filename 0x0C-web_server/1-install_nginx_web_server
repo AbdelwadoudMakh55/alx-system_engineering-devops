@@ -2,3 +2,4 @@
 # Installing nginx and configuring it
 sudo apt-get -y install nginx
 echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo service nginx restart
