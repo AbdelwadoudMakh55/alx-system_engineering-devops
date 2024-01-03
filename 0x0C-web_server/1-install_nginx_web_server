@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Installing nginx and configuring it
 sudo apt-get -y install nginx
+sudo ufw --force enable
 sudo ufw allow 'Nginx HTTP'
 echo "Hello World!" > /var/www/html/index.html
 nginx -s reload
