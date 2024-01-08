@@ -21,8 +21,8 @@ exec { 'redirection':
     listen [::]:80;
     root /var/www/html;
     index index.html;
-    server_name $(hostname -I);
-    add_header X-Served-By $hostname;
+    server_name $(hostname -I | awk '{print $1}');
+    add_header X-Served-By ${hostname};
     location /redirect_me {
         return 301 /;
     }
