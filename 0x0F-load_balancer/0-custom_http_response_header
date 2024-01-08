@@ -5,7 +5,7 @@ sudo apt-get install -y nginx
 echo "server {
     listen 80 ;
     listen [::]:80;
-    server_name $hostname;
-    add_header X-Served-By $hostname;
+    server_name $host;
+    add_header X-Served-By $host;
 }" | sudo tee /etc/nginx/sites-available/default
 sudo service nginx restart
