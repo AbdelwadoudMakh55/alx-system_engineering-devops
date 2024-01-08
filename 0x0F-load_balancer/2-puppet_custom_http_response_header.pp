@@ -1,8 +1,4 @@
 # Automating the installation and the set up of the nginx server
-exec { 'create IP adress variable':
-  command  => 'IP_Address=$(hostname -I | awk "{print $1}")',
-  provider => 'shell',
-}
 exec { 'create host variable':
   command  => 'host=$(hostname)',
   provider => 'shell',
@@ -29,13 +25,14 @@ exec { 'redirection':
     listen [::]:80;
     root /var/www/html;
     index index.html;
-    server_name $host;
-    add_header X-Served-By $hostname;
+    server_name localhost;
+    add_header X-Served-By $host;
     location /redirect_me {
         return 301 /;
     }
 }" | sudo tee /etc/nginx/sites-available/default',
   provider => 'shell',
+  require  => Exec['create host variable'],
 }
 exec { 'Restart nginx':
   command  => 'sudo service nginx restart',
