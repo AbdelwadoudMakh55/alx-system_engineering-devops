@@ -9,8 +9,8 @@ echo "server {
     listen [::]:80;
     root /var/www/html;
     index index.html;
-    server_name $host;
-    add_header X-Served-By $host;
+    server_name $(hostname -I);
+    add_header X-Served-By $hostname;
     error_page 404 /custom_404.html;
     location = /custom_404.html {
 	root /var/www/html;
