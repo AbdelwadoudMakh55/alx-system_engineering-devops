@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Installing nginx and configuring it + adding redirection and error page + X-served-By header
 IP_Adress=$(hostname -I | awk '{print $1}')
+host=$(hostname)
 sudo apt-get update
 sudo apt-get install -y nginx
 echo "Hello World!" | sudo tee /var/www/html/index.html
@@ -10,12 +11,12 @@ echo "server {
     listen [::]:80;
     root /var/www/html;
     index index.html;
-    server_name ${IP_Adress};
-    add_header X-Served-By ${hostname};
+    server_name $IP_Adress;
+    add_header X-Served-By $host;
     error_page 404 /custom_404.html;
     location = /custom_404.html {
-	root /var/www/html;
-	internal;
+        root /var/www/html;
+        internal;
     }
     location /redirect_me {
         return 301 /;
