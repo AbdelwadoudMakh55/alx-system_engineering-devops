@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # Fixing the web server
-sudo apt-get -y update
-sudo apt-get install -y nginx
 sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+kill "$(pgrep 'nginx' | head -n 1)"
