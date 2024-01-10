@@ -3,11 +3,6 @@
 sudo apt-get -y update
 sudo apt-get install -y nginx
 sudo service nginx start
-echo "server {
-    listen 80 default_server;
-    root /var/www/html;
-    index index.html;
-    server_name _;
-}" | sudo tee /etc/nginx/sites-available/default
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo nginx -t
 sudo service nginx restart
