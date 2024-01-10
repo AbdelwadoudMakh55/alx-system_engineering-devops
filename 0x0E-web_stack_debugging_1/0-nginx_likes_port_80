@@ -9,4 +9,5 @@ echo "server {
     index index.html;
     server_name _;
 }" | sudo tee /etc/nginx/sites-available/default
+sudo nginx -t
 sudo service nginx restart
