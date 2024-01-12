@@ -1,5 +1,5 @@
 # Automating the installation and the set up of the nginx server
-$host = $facts['networking']['hostname']
+$hostname = $facts['::environment']['HOSTNAME']
 exec { 'update apt-get':
   command  => 'sudo apt-get update',
   provider => 'shell',
@@ -23,7 +23,7 @@ exec { 'redirection':
     root /var/www/html;
     index index.html;
     server_name localhost;
-    add_header X-Served-By ${host};
+    add_header X-Served-By ${hostname};
     location /redirect_me {
         return 301 /;
     }
