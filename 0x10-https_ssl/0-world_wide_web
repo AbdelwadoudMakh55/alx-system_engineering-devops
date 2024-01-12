@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Getting infos
-if [ "$#" -eq 1 ]
-then
+infos () {
 	sub1="www."$1
 	record1=$(dig $sub1 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
 	IP1=$(dig $sub1 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
@@ -18,10 +17,14 @@ then
 	record4=$(dig $sub4 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
 	IP4=$(dig $sub4 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
 	echo "the subdomain web-02 is a $record4 and points to $IP4"
+}
+if [ "$#" -eq 1 ]
+then
+	infos "$1"
 fi
 if [ "$#" -eq 2 ]
 then
 	record1=$(dig $2"."$1 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
 	IP1=$(dig $2"."$1 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
-	echo "the subdomain www is a $record1 and points to $IP1"
+	echo "the subdomain $2 is a $record1 and points to $IP1"
 fi
