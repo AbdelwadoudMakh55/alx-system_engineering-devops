@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Getting infos
+if [ "$#" -eq 1 ]
+then
+	sub1="www."$1
+	record1=$(dig $sub1 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+	IP1=$(dig $sub1 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+	echo "the subdomain www is a $record1 and points to $IP1"
+	sub2="lb-01."$1
+	record2=$(dig $sub2 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+	IP2=$(dig $sub2 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+	echo "the subdomain lb-01 is a $record2 and points to $IP2"
+        sub3="web-01."$1
+	record3=$(dig $sub3 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+	IP3=$(dig $sub3 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+	echo "the subdomain web-01 is a $record3 and points to $IP3"
+        sub4="web-02."$1
+	record4=$(dig $sub4 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+	IP4=$(dig $sub4 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+	echo "the subdomain web-02 is a $record4 and points to $IP4"
+fi
+if [ "$#" -eq 2 ]
+then
+	record1=$(dig $2"."$1 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+	IP1=$(dig $2"."$1 | grep -A1 ';; ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+	echo "the subdomain www is a $record1 and points to $IP1"
+fi
