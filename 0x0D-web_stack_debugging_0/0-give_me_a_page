@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Setting up apache on docker container
+echo -e "FROM httpd:latest\nRUN echo -e \"Hello Holberton\" | sudo tee /var/www/html/index.html\nEXPOSE 80" | sudo tee ./Dockerfile
+docker build -t apache_server .
+docker run -p 8080:80 -d -it apache_server
