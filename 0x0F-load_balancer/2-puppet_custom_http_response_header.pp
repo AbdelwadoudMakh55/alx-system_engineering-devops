@@ -1,36 +1,25 @@
 # Automating the installation and the set up of the nginx server
-$hostname = $facts['::environment']['HOSTNAME']
-exec { 'update apt-get':
-  command  => 'sudo apt-get update',
-  provider => 'shell',
+file { '/etc/nginx/sites-available/default':
+  ensure  => file,
+  path    => '/etc/nginx/sites-available/default',
+  content => "server {
+	listen 80 ;
+	listen [::]:80;
+	root /var/www/html;
+	index index.html;
+	server_name _;
+	add_header X-Served-By ${hostname};
+	error_page 404 /custom_404.html;
+	location = /custom_404.html {
+           root /var/www/html;
+           internal;
+    	}
+    	location /redirect_me {
+           return 301 /;
+    	}
+}",
 }
-exec { 'install nginx':
-  command  => 'sudo apt-get install -y nginx',
-  provider => 'shell',
-}
-exec { 'start nginx':
-  command  => 'sudo service nginx start',
-  provider => 'shell',
-}
-exec { 'Hello world':
-  command  => 'echo "Hello World!" | sudo tee /var/www/html/index.html',
-  provider => 'shell',
-}
-exec { 'redirection':
-  command  => "echo 'server {
-    listen 80 ;
-    listen [::]:80;
-    root /var/www/html;
-    index index.html;
-    server_name localhost;
-    add_header X-Served-By ${hostname};
-    location /redirect_me {
-        return 301 /;
-    }
-}' | sudo tee /etc/nginx/sites-available/default",
-  provider => 'shell',
-}
-exec { 'Restart nginx':
+exec { 'restart nginx'
   command  => 'sudo service nginx restart',
   provider => 'shell',
 }
