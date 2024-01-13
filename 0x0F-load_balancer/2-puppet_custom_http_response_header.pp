@@ -1,4 +1,12 @@
 # Automating the installation and the set up of the nginx server
+exec { 'update'
+  command  => 'sudo apt-get -y update',
+  provider => 'shell',
+}
+exec { 'install nginx'
+  command  => 'sudo apt-get install -y nginx',
+  provider => 'shell',
+}
 file { '/etc/nginx/sites-available/default':
   ensure  => file,
   path    => '/etc/nginx/sites-available/default',
@@ -8,7 +16,7 @@ file { '/etc/nginx/sites-available/default':
 	root /var/www/html;
 	index index.html;
 	server_name _;
-	add_header X-Served-By ${hostname};
+	add_header X-Served-By ${HOSTNAME};
 	error_page 404 /custom_404.html;
 	location = /custom_404.html {
            root /var/www/html;
