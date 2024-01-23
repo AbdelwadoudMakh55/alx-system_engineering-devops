@@ -6,5 +6,5 @@ sudo service nginx stop
 sudo chown -R nginx:nginx /var/log/nginx
 sudo chown -R nginx:nginx /var/lib/nginx
 sudo chown -R nginx:nginx /etc/nginx/*
-sudo sed -i 's/#user www-data;/user nginx;/g' /etc/nginx/nginx.conf
+sudo sed -i 's/user .*;/user nginx;/g' /etc/nginx/nginx.conf
 sudo -u nginx service nginx start
