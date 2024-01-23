@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 # Running nginx as nginx
-sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo service nginx stop
 sudo chown -R nginx:nginx /var/log/nginx
 sudo chown -R nginx:nginx /var/lib/nginx
 sudo chown -R nginx:nginx /etc/nginx/*
