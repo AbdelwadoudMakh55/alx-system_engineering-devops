@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-Fetching information from subreddit
-"""
+""" Fetching information from subreddit """
 import requests
 
 
