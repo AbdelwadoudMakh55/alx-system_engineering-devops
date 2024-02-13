@@ -18,7 +18,9 @@ def count_words(subreddit, word_list, keywords_count={}, count=0, after=""):
                          allow_redirects=False)
         childrens = r.json().get("data").get("children")
         if len(keywords_count) == 0:
-            for word in word_list:
+            for i in range(len(word_list)):
+                word_list[i] = word_list[i].lower()
+            for word in list(set(word_list)):
                 keywords_count[word] = 0
         for post in childrens:
             for word in word_list:
@@ -35,5 +37,4 @@ def count_words(subreddit, word_list, keywords_count={}, count=0, after=""):
                 if val != 0:
                     print(f"{key}: {val}")
     except Exception as e:
-        print(e)
-        return None
+        pass
