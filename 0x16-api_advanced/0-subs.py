@@ -2,8 +2,6 @@
 """
 Fetching information from subreddit
 """
-
-
 import requests
 
 
