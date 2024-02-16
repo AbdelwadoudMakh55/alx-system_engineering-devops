@@ -1,4 +1,4 @@
-# **Database Downtime Debacle**
+# **Oops, We Tripped Over a Memory Stick: The Unforgettable Database Downtime Fiasco**
 ### Summary
 Start Time: February 15, 2024, 10:00 AM (UTC)
 End Time: February 15, 2024, 2:00 PM (UTC)
@@ -37,7 +37,3 @@ Regular Maintenance: Instituting regular maintenance schedules for hardware comp
 6. Document best practices for hardware maintenance and troubleshooting to facilitate knowledge sharing among IT team members.
 7. Communicate with stakeholders to provide updates on the resolution of the issue and any preventive measures implemented.
 8. Implement redundancy measures in critical hardware components to minimize the impact of future hardware failures.
-
-
-
-
