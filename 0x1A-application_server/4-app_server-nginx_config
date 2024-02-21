@@ -23,7 +23,7 @@ server {
         rewrite ^/airbnb-dynamic/(.*) /$1 break;
         proxy_pass http://localhost:5001;
     }
-    location /api/v1 {
+    location /api {
         rewrite ^/api/(.*) /api/$1 break;
         proxy_pass http://localhost:5002;
     }
