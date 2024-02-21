@@ -24,7 +24,6 @@ server {
         proxy_pass http://localhost:5001;
     }
     location /api {
-        rewrite ^/api/(.*) /api/$1 break;
-        proxy_pass http://localhost:5002;
+        proxy_pass http://localhost:5002/api;
     }
 }
