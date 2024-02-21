@@ -25,6 +25,7 @@ server {
     }
     location /api {
 	include proxy_params;
+	rewrite ^/api/(.*) /api/$1 break;
         proxy_pass http://localhost:5002/api;
     }
 }
