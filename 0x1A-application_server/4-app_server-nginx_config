@@ -1,0 +1,30 @@
+server {
+    listen 80;
+    listen [::]:80;
+    root /var/www/html;
+    index index.html;
+    server_name _;
+    add_header X-Served-By 445918-web-01;
+    error_page 404 /custom_404.html;
+    location = /custom_404.html {
+        root /var/www/html;
+        internal;
+    }
+    location /redirect_me {
+        return 301 /;
+    }
+    location /hbnb_static/ {
+        alias /data/web_static/current/;
+    }
+    location /airbnb-onepage {
+        proxy_pass http://localhost:5000;
+    }
+    location /airbnb-dynamic/number_odd_or_even {
+        rewrite ^/airbnb-dynamic/(.*) /$1 break;
+        proxy_pass http://localhost:5001;
+    }
+    location /api/v1 {
+        rewrite ^/api/(.*) /api/$1 break;
+        proxy_pass http://localhost:5002;
+    }
+}
