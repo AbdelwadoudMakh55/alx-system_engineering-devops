@@ -7,7 +7,3 @@ exec { 'soft_limit':
   command  => 'sed -i "s/holberton soft nofile 4/holberton soft nofile 1000/g" /etc/security/limits.conf',
   provider => 'shell',
 }
-exec { 'reload':
-  command  => 'bash --login',
-  provider => 'shell',
-}
